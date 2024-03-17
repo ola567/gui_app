@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="to_do_list_app">
+    <file>img/app_icon.png</file>
+  </qresource>
+</RCC>
