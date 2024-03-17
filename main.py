@@ -2,13 +2,11 @@ import sys
 
 from PyQt5 import QtWidgets
 
-from ToDoListApp import ToDoListAppUI
+from ToDoListApp import ToDoListAppView
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    ToDoListApp = QtWidgets.QMainWindow()
-    ui = ToDoListAppUI()
-    ui.setupUi(ToDoListApp)
-    ToDoListApp.show()
+    app_window = ToDoListAppView()
+    app_window.show()
     sys.exit(app.exec_())
