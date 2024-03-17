@@ -11,12 +11,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_main_view(object):
-    def setupUi(self, main_view):
+class MainView(object):
+    def setup_view(self, main_view):
         main_view.setObjectName("main_view")
         main_view.resize(600, 800)
         main_view.setStyleSheet("background-color: rgb(217, 217, 217);\n"
-"")
+                                "")
         self.centralwidget = QtWidgets.QWidget(main_view)
         self.centralwidget.setObjectName("centralwidget")
         self.add_task = QtWidgets.QPushButton(self.centralwidget)
@@ -30,8 +30,8 @@ class Ui_main_view(object):
         self.add_task.setMouseTracking(True)
         self.add_task.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.add_task.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 10px;")
+                                    "color: rgb(255, 255, 255);\n"
+                                    "border-radius: 10px;")
         self.add_task.setObjectName("add_task")
         self.edit_task = QtWidgets.QPushButton(self.centralwidget)
         self.edit_task.setGeometry(QtCore.QRect(310, 570, 270, 50))
@@ -43,8 +43,8 @@ class Ui_main_view(object):
         self.edit_task.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.edit_task.setMouseTracking(True)
         self.edit_task.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 10px;")
+                                     "color: rgb(255, 255, 255);\n"
+                                     "border-radius: 10px;")
         self.edit_task.setObjectName("edit_task")
         self.delete_task = QtWidgets.QPushButton(self.centralwidget)
         self.delete_task.setGeometry(QtCore.QRect(20, 630, 560, 50))
@@ -55,8 +55,8 @@ class Ui_main_view(object):
         self.delete_task.setFont(font)
         self.delete_task.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.delete_task.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 10px;")
+                                       "color: rgb(255, 255, 255);\n"
+                                       "border-radius: 10px;")
         self.delete_task.setObjectName("delete_task")
         self.done = QtWidgets.QPushButton(self.centralwidget)
         self.done.setGeometry(QtCore.QRect(20, 690, 270, 50))
@@ -67,8 +67,8 @@ class Ui_main_view(object):
         self.done.setFont(font)
         self.done.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.done.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 10px;")
+                                "color: rgb(255, 255, 255);\n"
+                                "border-radius: 10px;")
         self.done.setObjectName("done")
         self.not_done = QtWidgets.QPushButton(self.centralwidget)
         self.not_done.setGeometry(QtCore.QRect(310, 690, 270, 50))
@@ -79,8 +79,8 @@ class Ui_main_view(object):
         self.not_done.setFont(font)
         self.not_done.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.not_done.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 10px;")
+                                    "color: rgb(255, 255, 255);\n"
+                                    "border-radius: 10px;")
         self.not_done.setObjectName("not_done")
         self.to_do_list = QtWidgets.QListWidget(self.centralwidget)
         self.to_do_list.setGeometry(QtCore.QRect(20, 20, 560, 530))
@@ -95,7 +95,7 @@ class Ui_main_view(object):
         font.setWeight(75)
         self.to_do_list.setFont(font)
         self.to_do_list.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius: 10 px;")
+                                      "border-radius: 10 px;")
         self.to_do_list.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.to_do_list.setItemAlignment(QtCore.Qt.AlignLeading)
         self.to_do_list.setObjectName("to_do_list")
@@ -109,8 +109,8 @@ class Ui_main_view(object):
         self.menu.setFont(font)
         self.menu.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.menu.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 10 px;")
+                                "color: rgb(255, 255, 255);\n"
+                                "border-radius: 10 px;")
         self.menu.setObjectName("menu")
         self.menu_elements = QtWidgets.QMenu(self.menu)
         self.menu_elements.setGeometry(QtCore.QRect(273, 122, 268, 200))
@@ -129,7 +129,7 @@ class Ui_main_view(object):
         self.menu_elements.setWhatsThis("")
         self.menu_elements.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.menu_elements.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-"color: rgb(255, 255, 255);")
+                                         "color: rgb(255, 255, 255);")
         self.menu_elements.setObjectName("menu_elements")
         main_view.setMenuBar(self.menu)
         self.save_to_file = QtWidgets.QAction(main_view)
@@ -160,10 +160,10 @@ class Ui_main_view(object):
         self.menu_elements.addAction(self.about_app)
         self.menu.addAction(self.menu_elements.menuAction())
 
-        self.retranslateUi(main_view)
+        self.retranslate_view(main_view)
         QtCore.QMetaObject.connectSlotsByName(main_view)
 
-    def retranslateUi(self, main_view):
+    def retranslate_view(self, main_view):
         _translate = QtCore.QCoreApplication.translate
         main_view.setWindowTitle(_translate("main_view", "Dodaj zadanie"))
         self.add_task.setText(_translate("main_view", "Dodaj"))
@@ -177,13 +177,3 @@ class Ui_main_view(object):
         self.save_to_file_2.setText(_translate("main_view", "Zapisz do pliku"))
         self.actionWczytaj_do_pliku.setText(_translate("main_view", "Wczytaj do pliku"))
         self.about_app.setText(_translate("main_view", "O aplikacji"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    main_view = QtWidgets.QMainWindow()
-    ui = Ui_main_view()
-    ui.setupUi(main_view)
-    main_view.show()
-    sys.exit(app.exec_())
