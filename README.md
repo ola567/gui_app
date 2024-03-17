@@ -1,2 +1,12 @@
-# gui_app
-To do list with gui written in PyQT5
+# To do list with GUI in Python
+
+## Table of content:
+- [Project description](#project_description)
+- [Technologies](#technologies)
+
+## Project description
+project description
+
+## Technologies
+technologies
+
