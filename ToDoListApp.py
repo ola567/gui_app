@@ -11,13 +11,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_ToDoListApp(object):
-    def setupUi(self, ToDoListApp):
+class ToDoListAppView(object):
+    def setup_view(self, ToDoListApp):
         ToDoListApp.setObjectName("ToDoListApp")
         ToDoListApp.resize(600, 800)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("img/app_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        ToDoListApp.setWindowIcon(icon)
         ToDoListApp.setStyleSheet("background-color: rgb(82, 95, 207)")
         self.centralwidget = QtWidgets.QWidget(ToDoListApp)
         self.centralwidget.setObjectName("centralwidget")
@@ -46,22 +43,12 @@ class Ui_ToDoListApp(object):
         self.app_icon.setObjectName("app_icon")
         ToDoListApp.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(ToDoListApp)
+        self.retranslate_view(ToDoListApp)
         QtCore.QMetaObject.connectSlotsByName(ToDoListApp)
 
-    def retranslateUi(self, ToDoListApp):
+    def retranslate_view(self, ToDoListApp):
         _translate = QtCore.QCoreApplication.translate
         ToDoListApp.setWindowTitle(_translate("ToDoListApp", "Lista zadań"))
         self.app_name.setText(_translate("ToDoListApp", "Lista zadań"))
         self.start_button.setText(_translate("ToDoListApp", "Start"))
         self.app_icon.setText(_translate("ToDoListApp", "<html><head/><body><p><img src=\"img/app_icon.png\"/></p></body></html>"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    ToDoListApp = QtWidgets.QMainWindow()
-    ui = Ui_ToDoListApp()
-    ui.setupUi(ToDoListApp)
-    ToDoListApp.show()
-    sys.exit(app.exec_())
