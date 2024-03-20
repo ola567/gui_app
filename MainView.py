@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from TaskView import TaskView
+from ToDoList import ToDoList
 
 
 class MainView(object):
@@ -46,6 +47,7 @@ class MainView(object):
                                               "color: rgb(255, 255, 255);\n"
                                               "border-radius: 10px;")
         self.delete_task_button.setObjectName("delete_task")
+        self.delete_task_button.clicked.connect(self.delete_task)
 
         self.done_button = QtWidgets.QPushButton(self.centralwidget)
         self.done_button.setGeometry(QtCore.QRect(20, 690, 270, 50))
@@ -114,6 +116,7 @@ class MainView(object):
         self.menu.addAction(self.menu_elements.menuAction())
 
         self.task_view_handler = None
+        self.task_list = ToDoList()
 
         self.retranslate_view(main_view)
         QtCore.QMetaObject.connectSlotsByName(main_view)
@@ -135,7 +138,17 @@ class MainView(object):
         if self.task_view_handler is None:
             self.task_view_window = QtWidgets.QMainWindow()
             self.task_view_handler = TaskView()
-            self.task_view_handler.setup_view(self.task_view_window)
+            self.task_view_handler.setup_view(self.task_view_window, self)
             self.task_view_window.show()
         else:
             self.task_view_window.show()
+
+    def delete_task(self):
+        selected_tasks = self.to_do_list.selectedItems()
+        for task in selected_tasks:
+            task_number = self.to_do_list.row(task)
+            self.to_do_list.takeItem(self.to_do_list.row(task))
+            self.task_list.delete(task_number=task_number)
+
+    def save_to_file(self):
+        pass
