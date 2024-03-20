@@ -107,7 +107,7 @@ class TaskView(object):
         task_title = self.title_input.toPlainText()
         task_description = self.content_input.toPlainText()
         task_finish_date = self.finish_date_input.toPlainText()
-        self.parent.task_list.add((task_title, task_description, task_finish_date))
+        self.parent.task_list.add((task_title, task_description, task_finish_date, 0))
         self.parent.to_do_list.addItem(f'{task_title} {task_finish_date}: \n    {task_description}')
         self.add_task.close()
 

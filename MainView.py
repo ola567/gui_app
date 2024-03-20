@@ -1,4 +1,8 @@
+import json
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import QFileDialog
 
 from TaskView import TaskView
 from ToDoList import ToDoList
@@ -57,6 +61,7 @@ class MainView(object):
                                        "color: rgb(255, 255, 255);\n"
                                        "border-radius: 10px;")
         self.done_button.setObjectName("done")
+        self.done_button.clicked.connect(self.done)
 
         self.not_done_button = QtWidgets.QPushButton(self.centralwidget)
         self.not_done_button.setGeometry(QtCore.QRect(310, 690, 270, 50))
@@ -66,6 +71,7 @@ class MainView(object):
                                            "color: rgb(255, 255, 255);\n"
                                            "border-radius: 10px;")
         self.not_done_button.setObjectName("not_done")
+        self.not_done_button.clicked.connect(self.not_done)
 
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -74,7 +80,6 @@ class MainView(object):
 
         self.to_do_list = QtWidgets.QListWidget(self.centralwidget)
         self.to_do_list.setGeometry(QtCore.QRect(20, 20, 560, 530))
-        self.to_do_list.setFont(font)
         self.to_do_list.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                       "border-radius: 10 px;")
         self.to_do_list.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -101,17 +106,22 @@ class MainView(object):
         self.menu_elements.setObjectName("menu_elements")
 
         main_view.setMenuBar(self.menu)
-        self.save_to_file = QtWidgets.QAction(main_view)
-        self.save_to_file.setFont(font)
-        self.save_to_file.setObjectName("save_to_file")
-        self.read_from_file = QtWidgets.QAction(main_view)
-        self.read_from_file.setFont(font)
-        self.read_from_file.setObjectName("read_from_file")
+        self.save_to_file_action = QtWidgets.QAction(main_view)
+        self.save_to_file_action.setFont(font)
+        self.save_to_file_action.setObjectName("save_to_file")
+        self.save_to_file_action.triggered.connect(self.save_to_file)
+
+        self.read_from_file_action = QtWidgets.QAction(main_view)
+        self.read_from_file_action.setFont(font)
+        self.read_from_file_action.setObjectName("read_from_file")
+        self.read_from_file_action.triggered.connect(self.read_from_file)
+
         self.about_app = QtWidgets.QAction(main_view)
         self.about_app.setFont(font)
         self.about_app.setObjectName("about_app")
-        self.menu_elements.addAction(self.save_to_file)
-        self.menu_elements.addAction(self.read_from_file)
+
+        self.menu_elements.addAction(self.save_to_file_action)
+        self.menu_elements.addAction(self.read_from_file_action)
         self.menu_elements.addAction(self.about_app)
         self.menu.addAction(self.menu_elements.menuAction())
 
@@ -130,18 +140,15 @@ class MainView(object):
         self.done_button.setText(_translate("main_view", "Zrobione"))
         self.not_done_button.setText(_translate("main_view", "Nie zrobione"))
         self.menu_elements.setTitle(_translate("main_view", "Menu"))
-        self.save_to_file.setText(_translate("main_view", "Zapisz do pliku"))
-        self.read_from_file.setText(_translate("main_view", "Wczytaj z pliku"))
+        self.save_to_file_action.setText(_translate("main_view", "Zapisz do pliku"))
+        self.read_from_file_action.setText(_translate("main_view", "Wczytaj z pliku"))
         self.about_app.setText(_translate("main_view", "O aplikacji"))
 
     def add_task(self):
-        if self.task_view_handler is None:
-            self.task_view_window = QtWidgets.QMainWindow()
-            self.task_view_handler = TaskView()
-            self.task_view_handler.setup_view(self.task_view_window, self)
-            self.task_view_window.show()
-        else:
-            self.task_view_window.show()
+        self.task_view_window = QtWidgets.QMainWindow()
+        self.task_view_handler = TaskView()
+        self.task_view_handler.setup_view(self.task_view_window, self)
+        self.task_view_window.show()
 
     def delete_task(self):
         selected_tasks = self.to_do_list.selectedItems()
@@ -151,4 +158,37 @@ class MainView(object):
             self.task_list.delete(task_number=task_number)
 
     def save_to_file(self):
-        pass
+        file_path, _ = QFileDialog.getSaveFileName(None, "Save File", "", "Text Files (*.txt);;All Files (*)")
+        if file_path:
+            with open(file_path, "w") as file:
+                file.write(str(self.task_list.list))
+
+    def read_from_file(self):
+        file_path, _ = QFileDialog.getOpenFileName(None, "Open File", "", "Text Files (*.txt);;All Files (*)")
+        if file_path:
+            try:
+                with open(file_path, "r") as file:
+                    file_contents = file.read()
+                    self.task_list.list = file_contents
+                    for task in self.task_list.list:
+                        self.to_do_list.addItem(f'{task} {task}: \n    {task}')
+            except Exception as e:
+                print("Error reading file:", str(e))
+
+    def done(self):
+        selected_item = self.to_do_list.currentItem()
+        if selected_item:
+            selected_item.setForeground(QColor("green"))
+            font = selected_item.font()
+            font.setStrikeOut(True)
+            selected_item.setFont(font)
+            self.task_list.list[self.to_do_list.row(selected_item)] = 1
+
+    def not_done(self):
+        selected_item = self.to_do_list.currentItem()
+        if selected_item:
+            selected_item.setForeground(QColor("black"))
+            font = selected_item.font()
+            font.setStrikeOut(False)
+            selected_item.setFont(font)
+            self.task_list.list[self.to_do_list.row(selected_item)] = 0

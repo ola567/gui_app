@@ -1,11 +1,9 @@
 class ToDoList:
     def __init__(self):
         self.list = []
-        self.idx = 0
 
     def add(self, task: tuple):
-        self.list.append({'task_index': self.idx, 'task_title': task[0], 'task_description': task[1], 'task_finish_date': task[2]})
-        self.idx += 1
+        self.list.append({'task_title': task[0], 'task_description': task[1], 'task_finish_date': task[2], 'task_done': task[3]})
 
     def edit(self, task: dict):
         pass
