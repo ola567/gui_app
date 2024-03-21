@@ -31,6 +31,7 @@ class TaskView(object):
                                      "color: rgb(255, 255, 255);\n"
                                      "border-radius: 10px;")
         self.ok_button.setObjectName("ok_button")
+        self.ok_button.setFont(font)
         self.ok_button.clicked.connect(self.ok)
 
         self.finish_date_label = QtWidgets.QLabel(self.add_task)
@@ -55,6 +56,7 @@ class TaskView(object):
                                          "color: rgb(255, 255, 255);\n"
                                          "border-radius: 10px;")
         self.cancel_button.setObjectName("cancel_button")
+        self.cancel_button.setFont(font)
         self.cancel_button.clicked.connect(self.cancel)
 
         self.title_label = QtWidgets.QLabel(self.add_task)

@@ -1,3 +1,4 @@
+import ast
 import json
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -21,15 +22,18 @@ class MainView(object):
         font.setBold(True)
         font.setWeight(75)
 
+        button_style_sheet = '''background-color: rgb(82, 95, 207);
+                                color: rgb(255, 255, 255);
+                                border-radius: 10px;}
+                                *:hover{background-color: rgb(72, 85, 197);}'''
+
         self.add_task_button = QtWidgets.QPushButton(self.centralwidget)
         self.add_task_button.setGeometry(QtCore.QRect(20, 570, 270, 50))
         self.add_task_button.setFont(font)
         self.add_task_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.add_task_button.setMouseTracking(True)
         self.add_task_button.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.add_task_button.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-                                           "color: rgb(255, 255, 255);\n"
-                                           "border-radius: 10px;")
+        self.add_task_button.setStyleSheet(button_style_sheet)
         self.add_task_button.setObjectName("add_task")
         self.add_task_button.clicked.connect(self.add_task)
 
@@ -38,18 +42,14 @@ class MainView(object):
         self.edit_task_button.setFont(font)
         self.edit_task_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.edit_task_button.setMouseTracking(True)
-        self.edit_task_button.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-                                            "color: rgb(255, 255, 255);\n"
-                                            "border-radius: 10px;")
+        self.edit_task_button.setStyleSheet(button_style_sheet)
         self.edit_task_button.setObjectName("edit_task")
 
         self.delete_task_button = QtWidgets.QPushButton(self.centralwidget)
         self.delete_task_button.setGeometry(QtCore.QRect(20, 630, 560, 50))
         self.delete_task_button.setFont(font)
         self.delete_task_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.delete_task_button.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-                                              "color: rgb(255, 255, 255);\n"
-                                              "border-radius: 10px;")
+        self.delete_task_button.setStyleSheet(button_style_sheet)
         self.delete_task_button.setObjectName("delete_task")
         self.delete_task_button.clicked.connect(self.delete_task)
 
@@ -57,9 +57,7 @@ class MainView(object):
         self.done_button.setGeometry(QtCore.QRect(20, 690, 270, 50))
         self.done_button.setFont(font)
         self.done_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.done_button.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-                                       "color: rgb(255, 255, 255);\n"
-                                       "border-radius: 10px;")
+        self.done_button.setStyleSheet(button_style_sheet)
         self.done_button.setObjectName("done")
         self.done_button.clicked.connect(self.done)
 
@@ -67,9 +65,7 @@ class MainView(object):
         self.not_done_button.setGeometry(QtCore.QRect(310, 690, 270, 50))
         self.not_done_button.setFont(font)
         self.not_done_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.not_done_button.setStyleSheet("background-color: rgb(82, 95, 207);\n"
-                                           "color: rgb(255, 255, 255);\n"
-                                           "border-radius: 10px;")
+        self.not_done_button.setStyleSheet(button_style_sheet)
         self.not_done_button.setObjectName("not_done")
         self.not_done_button.clicked.connect(self.not_done)
 
@@ -158,20 +154,27 @@ class MainView(object):
             self.task_list.delete(task_number=task_number)
 
     def save_to_file(self):
-        file_path, _ = QFileDialog.getSaveFileName(None, "Save File", "", "Text Files (*.txt);;All Files (*)")
+        file_path, _ = QFileDialog.getSaveFileName(None, "Save File", "", "Text Files")
         if file_path:
             with open(file_path, "w") as file:
                 file.write(str(self.task_list.list))
 
     def read_from_file(self):
-        file_path, _ = QFileDialog.getOpenFileName(None, "Open File", "", "Text Files (*.txt);;All Files (*)")
+        file_path, _ = QFileDialog.getOpenFileName(None, "Open File", "", "Text Files")
         if file_path:
             try:
                 with open(file_path, "r") as file:
-                    file_contents = file.read()
-                    self.task_list.list = file_contents
+                    self.task_list.list = ast.literal_eval(file.read())
+                    self.to_do_list.clear()
                     for task in self.task_list.list:
-                        self.to_do_list.addItem(f'{task} {task}: \n    {task}')
+                        self.to_do_list.addItem(
+                            f'{task["task_title"]} {task["task_finish_date"]}: \n    {task["task_description"]}')
+                        if task["task_done"] == 1:
+                            last_task = self.to_do_list.item(self.to_do_list.count() - 1)
+                            last_task.setForeground(QColor("green"))
+                            font = last_task.font()
+                            font.setStrikeOut(True)
+                            last_task.setFont(font)
             except Exception as e:
                 print("Error reading file:", str(e))
 
@@ -182,7 +185,7 @@ class MainView(object):
             font = selected_item.font()
             font.setStrikeOut(True)
             selected_item.setFont(font)
-            self.task_list.list[self.to_do_list.row(selected_item)] = 1
+            self.task_list.list[self.to_do_list.row(selected_item)]['task_done'] = 1
 
     def not_done(self):
         selected_item = self.to_do_list.currentItem()
@@ -191,4 +194,10 @@ class MainView(object):
             font = selected_item.font()
             font.setStrikeOut(False)
             selected_item.setFont(font)
-            self.task_list.list[self.to_do_list.row(selected_item)] = 0
+            self.task_list.list[self.to_do_list.row(selected_item)]['task_done'] = 0
+
+    def about_app(self):
+        pass
+
+    def edit_task(self):
+        pass

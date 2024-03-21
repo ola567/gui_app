@@ -29,9 +29,17 @@ class ToDoListAppView(object):
         font.setBold(True)
         font.setWeight(75)
         self.start_button.setFont(font)
-        self.start_button.setStyleSheet("background-color: rgb(239, 139, 235);\n"
-                                        "color: rgb(255, 255, 255);\n"
-                                        "border-radius: 10px")
+        self.start_button.setStyleSheet(
+            '''
+            background-color: rgb(239, 139, 235);
+            color: rgb(255, 255, 255);
+            border-radius: 10px;
+            }
+            *:hover{
+                background-color: rgb(229, 129, 225);
+            }
+            '''
+        )
         self.start_button.setObjectName("start_button")
         self.start_button.clicked.connect(self.start_app)
         self.main_view_handler = None
