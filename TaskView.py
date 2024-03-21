@@ -2,8 +2,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TaskView(object):
-    def setup_view(self, add_task, parent=None):
+    def setup_view(self, add_task, parent=None, task_index=None):
         self.parent = parent
+        self.task_index = task_index
 
         self.add_task = add_task
         self.add_task.setObjectName("add_task")
@@ -91,8 +92,12 @@ class TaskView(object):
                                              "border-radius: 10px;")
         self.finish_date_input.setObjectName("finish_date_input")
 
-        self.retranslate_view(self.add_task)
+        if self.task_index:
+            self.title_input.insertPlainText(self.parent.task_list.list[self.task_index]['task_title'])
+            self.content_input.insertPlainText(self.parent.task_list.list[self.task_index]['task_description'])
+            self.finish_date_input.insertPlainText(self.parent.task_list.list[self.task_index]['task_finish_date'])
 
+        self.retranslate_view(self.add_task)
         QtCore.QMetaObject.connectSlotsByName(self.add_task)
 
     def retranslate_view(self, add_task):
@@ -109,8 +114,12 @@ class TaskView(object):
         task_title = self.title_input.toPlainText()
         task_description = self.content_input.toPlainText()
         task_finish_date = self.finish_date_input.toPlainText()
-        self.parent.task_list.add((task_title, task_description, task_finish_date, 0))
-        self.parent.to_do_list.addItem(f'{task_title} {task_finish_date}: \n    {task_description}')
+        if self.task_index:
+            self.parent.to_do_list.item(self.task_index).setText(f'{task_title} {task_finish_date}: \n    {task_description}')
+            self.parent.task_list.edit(task_index=self.task_index, new_task=(task_title, task_description, task_finish_date))
+        else:
+            self.parent.task_list.add((task_title, task_description, task_finish_date, 0))
+            self.parent.to_do_list.addItem(f'{task_title} {task_finish_date}: \n    {task_description}')
         self.add_task.close()
 
     def cancel(self):

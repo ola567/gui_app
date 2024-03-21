@@ -44,6 +44,7 @@ class MainView(object):
         self.edit_task_button.setMouseTracking(True)
         self.edit_task_button.setStyleSheet(button_style_sheet)
         self.edit_task_button.setObjectName("edit_task")
+        self.edit_task_button.clicked.connect(self.edit_task)
 
         self.delete_task_button = QtWidgets.QPushButton(self.centralwidget)
         self.delete_task_button.setGeometry(QtCore.QRect(20, 630, 560, 50))
@@ -200,4 +201,9 @@ class MainView(object):
         pass
 
     def edit_task(self):
-        pass
+        task_index = self.to_do_list.currentRow()
+        if task_index != -1:
+            self.task_view_window = QtWidgets.QMainWindow()
+            self.task_view_handler = TaskView()
+            self.task_view_handler.setup_view(self.task_view_window, self, task_index)
+            self.task_view_window.show()
