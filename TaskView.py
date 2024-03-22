@@ -92,7 +92,7 @@ class TaskView(object):
                                              "border-radius: 10px;")
         self.finish_date_input.setObjectName("finish_date_input")
 
-        if self.task_index:
+        if self.task_index is not None:
             self.title_input.insertPlainText(self.parent.task_list.list[self.task_index]['task_title'])
             self.content_input.insertPlainText(self.parent.task_list.list[self.task_index]['task_description'])
             self.finish_date_input.insertPlainText(self.parent.task_list.list[self.task_index]['task_finish_date'])
@@ -114,7 +114,7 @@ class TaskView(object):
         task_title = self.title_input.toPlainText()
         task_description = self.content_input.toPlainText()
         task_finish_date = self.finish_date_input.toPlainText()
-        if self.task_index:
+        if self.task_index is not None:
             self.parent.to_do_list.item(self.task_index).setText(f'{task_title} {task_finish_date}: \n    {task_description}')
             self.parent.task_list.edit(task_index=self.task_index, new_task=(task_title, task_description, task_finish_date))
         else:
