@@ -1,15 +1,19 @@
 import gi
 
 from pygtk.TaskView import TaskView
+from pygtk.ToDoList import ToDoList
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk
 
 
 class MainView(Gtk.Window):
-    def __init__(self, parent):
+    def __init__(self):
         super().__init__(title="Lista zadań")
         self.set_default_size(600, 800)
+
+        # variables
+        self.task_list = ToDoList()
 
         # elements
         self.grid = Gtk.Grid()
@@ -62,26 +66,24 @@ class MainView(Gtk.Window):
         self.add(box)
 
     def add_task(self, widget):
-        task_window = TaskView()
-        task_window.connect('destroy', task_window.destroy)
-        task_window.show()
+        task_window = TaskView(parent=self)
+        task_window.connect('destroy', task_window.destroy())
+        task_window.show_all()
 
     def edit_task(self, widget):
-        # task_index = self.to_do_list.currentRow()
-        # if task_index != -1:
-        #     self.task_view_window = QtWidgets.QMainWindow()
-        #     self.task_view_handler = TaskView()
-        #     self.task_view_handler.setup_view(self.task_view_window, self, task_index)
-        #     self.task_view_window.show()
-        pass
+        selected_row = self.to_do_list.get_selected_row()
+        task_index = selected_row.get_index()
+        if selected_row and task_index != -1:
+            task_view_window = TaskView(parent=self, task_index=task_index)
+            task_view_window.connect('destroy', task_view_window.destroy)
+            task_view_window.show_all()
 
     def delete_task(self, widget):
-        # selected_tasks = self.to_do_list.selectedItems()
-        # for task in selected_tasks:
-        #     task_number = self.to_do_list.row(task)
-        #     self.to_do_list.takeItem(self.to_do_list.row(task))
-        #     self.task_list.delete(task_number=task_number)
-        pass
+        selected_row = self.to_do_list.get_selected_row()
+        if selected_row:
+            task_number = selected_row.get_index()
+            self.to_do_list.remove(selected_row)
+            self.task_list.delete(task_number=task_number)
 
     def done(self, widget):
         # selected_item = self.to_do_list.currentItem()

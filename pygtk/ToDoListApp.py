@@ -28,7 +28,7 @@ class ToDoListAppView(Gtk.Window):
         self.add(self.grid)
 
     def on_button_clicked(self, widget):
-        win = MainView(self)
+        win = MainView()
         win.connect("destroy", Gtk.main_quit)
         win.show_all()
         self.destroy()
