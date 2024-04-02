@@ -1,26 +1,34 @@
 import gi
 
+from pygtk.MainView import MainView
+
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 
 class ToDoListAppView(Gtk.Window):
     def __init__(self):
-        super().__init__(title="Hello World")
-        self.button = Gtk.Button(label="Click Here")
-        self.button.connect("clicked", self.on_button_clicked)
-        self.add(self.button)
+        super().__init__(title="Lista zadań")
+        self.set_default_size(600, 800)
+
+        # elements
+        self.app_name_label = Gtk.Label(label='Lista zadań')
+        self.app_icon = Gtk.Image.new_from_file("img/app_icon.png")
+        self.start_app_button = Gtk.Button(label='Start')
+        self.start_app_button.connect("clicked", self.on_button_clicked)
+
+        self.grid = Gtk.Grid(row_spacing=30)
+        self.grid.attach(self.app_name_label, 1, 0, 1, 1)
+        self.grid.attach(self.app_icon, 0, 0, 1, 1)
+        self.grid.attach(self.start_app_button, 0, 1, 2, 1)
+
+        self.grid.set_halign(Gtk.Align.CENTER)
+        self.grid.set_valign(Gtk.Align.CENTER)
+
+        self.add(self.grid)
 
     def on_button_clicked(self, widget):
-        print('cliclked')
-
-    # def start_app(self):
-    #     if self.main_view_handler is None:
-    #         self.main_view_window = QtWidgets.QMainWindow()
-    #         self.main_view_handler = MainView()
-    #         self.main_view_handler.setup_view(self.main_view_window)
-    #         self.main_view_window.show()
-    #         self.ToDoListApp.close()
-    #     else:
-    #         self.main_view_window.show()
-    #         self.ToDoListApp.close()
+        win = MainView(self)
+        win.connect("destroy", Gtk.main_quit)
+        win.show_all()
+        self.destroy()
