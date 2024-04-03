@@ -57,7 +57,7 @@ class TaskView(Gtk.Window):
 
         self.add(box)
 
-    def ok(self):
+    def ok(self, widget):
         task_title = self.title_input.get_text()
         task_description = self.content_input.get_text()
         task_finish_date = self.date_input.get_text()
@@ -79,5 +79,5 @@ class TaskView(Gtk.Window):
             new_task.show_all()
         self.destroy()
 
-    def cancel(self):
+    def cancel(self, widget):
         self.destroy()
