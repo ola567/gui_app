@@ -70,16 +70,15 @@ class MainView(Gtk.Window):
 
     def add_task(self, widget):
         task_window = TaskView(parent=self)
-        task_window.connect('destroy', task_window.destroy)
         task_window.show_all()
 
     def edit_task(self, widget):
         selected_row = self.to_do_list.get_selected_row()
-        task_index = selected_row.get_index()
-        if selected_row and task_index != -1:
-            task_view_window = TaskView(parent=self, task_index=task_index)
-            task_view_window.connect('destroy', task_view_window.destroy)
-            task_view_window.show_all()
+        if selected_row:
+            task_index = selected_row.get_index()
+            if selected_row and task_index != -1:
+                task_view_window = TaskView(parent=self, task_index=task_index)
+                task_view_window.show_all()
 
     def delete_task(self, widget):
         selected_row = self.to_do_list.get_selected_row()
@@ -154,5 +153,4 @@ class MainView(Gtk.Window):
 
     def about_app(self, widget):
         about_app_window = AboutAppView()
-        about_app_window.connect('destroy', about_app_window.destroy)
         about_app_window.show_all()
