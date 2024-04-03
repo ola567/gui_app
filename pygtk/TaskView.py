@@ -62,12 +62,22 @@ class TaskView(Gtk.Window):
         task_description = self.content_input.get_text()
         task_finish_date = self.date_input.get_text()
         if self.task_index is not None:
-            self.parent.to_do_list.item(self.task_index).setText(f'{task_title} {task_finish_date}: \n    {task_description}')
             self.parent.task_list.edit(task_index=self.task_index, new_task=(task_title, task_description, task_finish_date))
+            # edit in ListBox
+            if 0 <= self.task_index < len(self.parent.to_do_list.get_children()):
+                row = self.parent.to_do_list.get_children()[self.task_index]
+                label = row.get_child()
+                if isinstance(label, Gtk.Label):
+                    label.set_text(f'{task_title} {task_finish_date}: \n    {task_description}')
         else:
             self.parent.task_list.add((task_title, task_description, task_finish_date, 0))
-            self.parent.to_do_list.addItem(f'{task_title} {task_finish_date}: \n    {task_description}')
+            # add to ListBox
+            new_task = Gtk.ListBoxRow()
+            label = Gtk.Label(label=f'{task_title} {task_finish_date}: \n    {task_description}')
+            new_task.add(label)
+            self.parent.to_do_list.add(new_task)
+            new_task.show_all()
         self.destroy()
 
     def cancel(self):
-        self.close()
+        self.destroy()
