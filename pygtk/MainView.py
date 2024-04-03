@@ -47,7 +47,7 @@ class MainView(Gtk.Window):
         self.edit_task_button = Gtk.Button(label="Edytuj")
         self.edit_task_button.connect("clicked", self.edit_task)
         self.delete_task_button = Gtk.Button(label="Usuń")
-        self.edit_task_button.connect("clicked", self.edit_task)
+        self.delete_task_button.connect("clicked", self.delete_task)
         self.done_task_button = Gtk.Button(label="Zrobione")
         self.done_task_button.connect("clicked", self.done)
         self.not_done_task_button = Gtk.Button(label="Nie zrobione")
@@ -133,8 +133,8 @@ class MainView(Gtk.Window):
                     with open(file_path, "r") as file:
                         self.task_list.list = ast.literal_eval(file.read())
                         # clear list
-                        for row in self.listbox.get_children():
-                            self.listbox.remove(row)
+                        for row in self.to_do_list.get_children():
+                            self.to_do_list.remove(row)
                         for task in self.task_list.list:
                             new_task = Gtk.ListBoxRow()
                             label = Gtk.Label(label=f'{task["task_title"]} {task["task_finish_date"]}: \n    {task["task_description"]}')
