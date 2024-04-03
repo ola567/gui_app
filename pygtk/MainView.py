@@ -1,5 +1,8 @@
+import ast
+
 import gi
 
+from pygtk.AboutAppView import AboutAppView
 from pygtk.TaskView import TaskView
 from pygtk.ToDoList import ToDoList
 
@@ -67,7 +70,7 @@ class MainView(Gtk.Window):
 
     def add_task(self, widget):
         task_window = TaskView(parent=self)
-        task_window.connect('destroy', task_window.destroy())
+        task_window.connect('destroy', task_window.destroy)
         task_window.show_all()
 
     def edit_task(self, widget):
@@ -86,55 +89,70 @@ class MainView(Gtk.Window):
             self.task_list.delete(task_number=task_number)
 
     def done(self, widget):
-        # selected_item = self.to_do_list.currentItem()
-        # if selected_item:
-        #     selected_item.setForeground(QColor("green"))
-        #     font = selected_item.font()
-        #     font.setStrikeOut(True)
-        #     selected_item.setFont(font)
-        #     self.task_list.list[self.to_do_list.row(selected_item)]['task_done'] = 1
-        pass
+        selected_item = self.to_do_list.get_selected_row()
+        if selected_item:
+            selected_item_index = selected_item.get_index()
+            selected_item_label = selected_item.get_child()
+            selected_item_label.set_property("use_markup", True)
+            selected_item_label.set_markup('<span strikethrough="true" foreground="green">{}</span>'.format(selected_item_label.get_text()))
+            self.task_list.list[selected_item_index]['task_done'] = 1
 
     def not_done(self, widget):
-        # selected_item = self.to_do_list.currentItem()
-        # if selected_item:
-        #     selected_item.setForeground(QColor("black"))
-        #     font = selected_item.font()
-        #     font.setStrikeOut(False)
-        #     selected_item.setFont(font)
-        #     self.task_list.list[self.to_do_list.row(selected_item)]['task_done'] = 0
-        pass
+        selected_item = self.to_do_list.get_selected_row()
+        if selected_item:
+            selected_item_index = selected_item.get_index()
+            selected_item_label = selected_item.get_child()
+            selected_item_label.set_property("use_markup", True)
+            selected_item_label.set_markup('<span strikethrough="false" foreground="black">{}</span>'.format(selected_item_label.get_text()))
+            self.task_list.list[selected_item_index]['task_done'] = 0
 
     def save_to_file(self, widget):
-        # file_path, _ = QFileDialog.getSaveFileName(None, "Save File", "", "Text Files")
-        # if file_path:
-        #     with open(file_path, "w") as file:
-        #         file.write(str(self.task_list.list))
-        pass
+        dialog = Gtk.FileChooserDialog(title="Save File", parent=self, action=Gtk.FileChooserAction.SAVE)
+        dialog.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+
+        response = dialog.run()
+        if response == Gtk.ResponseType.OK:
+            file_path = dialog.get_filename()
+            if file_path:
+                with open(file_path, "w") as file:
+                    file.write(str(self.task_list.list))
+        dialog.destroy()
 
     def read_from_file(self, widget):
-        # file_path, _ = QFileDialog.getOpenFileName(None, "Open File", "", "Text Files")
-        # if file_path:
-        #     try:
-        #         with open(file_path, "r") as file:
-        #             self.task_list.list = ast.literal_eval(file.read())
-        #             self.to_do_list.clear()
-        #             for task in self.task_list.list:
-        #                 self.to_do_list.addItem(
-        #                     f'{task["task_title"]} {task["task_finish_date"]}: \n    {task["task_description"]}')
-        #                 if task["task_done"] == 1:
-        #                     last_task = self.to_do_list.item(self.to_do_list.count() - 1)
-        #                     last_task.setForeground(QColor("green"))
-        #                     font = last_task.font()
-        #                     font.setStrikeOut(True)
-        #                     last_task.setFont(font)
-        #     except Exception as e:
-        #         print("Error reading file:", str(e))
-        pass
+        dialog = Gtk.FileChooserDialog(title="Open File", parent=self, action=Gtk.FileChooserAction.OPEN)
+        dialog.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+        filter_text = Gtk.FileFilter()
+        filter_text.set_name("Text files")
+        filter_text.add_mime_type("text/plain")
+        dialog.add_filter(filter_text)
+        response = dialog.run()
+        if response == Gtk.ResponseType.OK:
+            file_path = dialog.get_filename()
+            if file_path:
+                try:
+                    with open(file_path, "r") as file:
+                        self.task_list.list = ast.literal_eval(file.read())
+                        # clear list
+                        for row in self.listbox.get_children():
+                            self.listbox.remove(row)
+                        for task in self.task_list.list:
+                            new_task = Gtk.ListBoxRow()
+                            label = Gtk.Label(label=f'{task["task_title"]} {task["task_finish_date"]}: \n    {task["task_description"]}')
+                            new_task.add(label)
+                            self.to_do_list.add(new_task)
+                            if task["task_done"] == 1:
+                                # get last element
+                                children = self.to_do_list.get_children()
+                                last_item = children[-1]
+                                last_item_label = last_item.get_children()[0]
+                                last_item_label.set_property("use_markup", True)
+                                last_item_label.set_markup('<span strikethrough="true" foreground="green">{}</span>'.format(last_item_label.get_text()))
+                            new_task.show_all()
+                except Exception as e:
+                    print("Error reading file:", str(e))
+        dialog.destroy()
 
     def about_app(self, widget):
-        # self.about_app_window = QtWidgets.QMainWindow()
-        # self.about_app_handler = AboutAppView()
-        # self.about_app_handler.setup_view(self.about_app_window)
-        # self.about_app_window.show()
-        pass
+        about_app_window = AboutAppView()
+        about_app_window.connect('destroy', about_app_window.destroy)
+        about_app_window.show_all()
