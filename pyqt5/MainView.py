@@ -1,5 +1,4 @@
 import ast
-import json
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QColor
@@ -144,7 +143,7 @@ class MainView(object):
     def add_task(self):
         self.task_view_window = QtWidgets.QMainWindow()
         self.task_view_handler = TaskView()
-        self.task_view_handler.setup_view(self.task_view_window, self)
+        self.task_view_handler.setup_view(add_task=self.task_view_window, parent=self, window_title='Dodaj zadanie')
         self.task_view_window.show()
 
     def delete_task(self):
@@ -208,5 +207,5 @@ class MainView(object):
         if task_index != -1:
             self.task_view_window = QtWidgets.QMainWindow()
             self.task_view_handler = TaskView()
-            self.task_view_handler.setup_view(self.task_view_window, self, task_index)
+            self.task_view_handler.setup_view(add_task=self.task_view_window, parent=self, window_title='Edytuj zadanie', task_index=task_index)
             self.task_view_window.show()

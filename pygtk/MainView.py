@@ -106,7 +106,7 @@ class MainView(Gtk.Window):
             self.task_list.list[selected_item_index]['task_done'] = 0
 
     def save_to_file(self, widget):
-        dialog = Gtk.FileChooserDialog(title="Save File", parent=self, action=Gtk.FileChooserAction.SAVE)
+        dialog = Gtk.FileChooserDialog(title="Zapisz plik", parent=self, action=Gtk.FileChooserAction.SAVE)
         dialog.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
 
         response = dialog.run()
@@ -118,10 +118,10 @@ class MainView(Gtk.Window):
         dialog.destroy()
 
     def read_from_file(self, widget):
-        dialog = Gtk.FileChooserDialog(title="Open File", parent=self, action=Gtk.FileChooserAction.OPEN)
+        dialog = Gtk.FileChooserDialog(title="Otwórz plik", parent=self, action=Gtk.FileChooserAction.OPEN)
         dialog.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("Text files")
+        filter_text.set_name("Pliki tekstowe")
         filter_text.add_mime_type("text/plain")
         dialog.add_filter(filter_text)
         response = dialog.run()

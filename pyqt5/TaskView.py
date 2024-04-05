@@ -2,9 +2,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TaskView(object):
-    def setup_view(self, add_task, parent=None, task_index=None):
+    def setup_view(self, add_task, window_title, parent=None, task_index=None):
+        # variables
         self.parent = parent
         self.task_index = task_index
+        self.window_title = window_title
 
         self.add_task = add_task
         self.add_task.setObjectName("add_task")
@@ -102,8 +104,8 @@ class TaskView(object):
 
     def retranslate_view(self, add_task):
         _translate = QtCore.QCoreApplication.translate
-        add_task.setWindowTitle(_translate("add_task", "Dodaj zadanie"))
-        self.add_task_label.setText(_translate("add_task", "Dodaj zadanie"))
+        add_task.setWindowTitle(_translate("add_task", self.window_title))
+        self.add_task_label.setText(_translate("add_task", self.window_title))
         self.ok_button.setText(_translate("add_task", "Ok"))
         self.finish_date_label.setText(_translate("add_task", "Data ukończenia"))
         self.cancel_button.setText(_translate("add_task", "Anuluj"))

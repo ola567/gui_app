@@ -42,7 +42,7 @@ class AboutAppView(object):
 
     def retranslateUi(self, about_app_window):
         _translate = QtCore.QCoreApplication.translate
-        about_app_window.setWindowTitle(_translate("about_app_window", "MainWindow"))
+        about_app_window.setWindowTitle(_translate("about_app_window", "O aplikacji"))
         self.about_app_label.setText(_translate("about_app_window", "O aplikacji"))
         self.about_app_content.setText(_translate("about_app_window",
                                                   "Aplikacja umożliwia stworzenie listy zadań do zrobienia. Zadania można "
