@@ -160,7 +160,7 @@ class MainView(object):
                 file.write(str(self.task_list.list))
 
     def read_from_file(self):
-        file_path, _ = QFileDialog.getOpenFileName(None, "Open File", "", "Text Files")
+        file_path, _ = QFileDialog.getOpenFileName(None, "Otwórz plik", "", "Pliki tekstowe")
         if file_path:
             try:
                 with open(file_path, "r") as file:
