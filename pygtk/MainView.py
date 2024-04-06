@@ -69,7 +69,7 @@ class MainView(Gtk.Window):
         self.add(box)
 
     def add_task(self, widget):
-        task_window = TaskView(parent=self)
+        task_window = TaskView(parent=self, window_title='Dodaj zadanie')
         task_window.show_all()
 
     def edit_task(self, widget):
@@ -77,7 +77,7 @@ class MainView(Gtk.Window):
         if selected_row:
             task_index = selected_row.get_index()
             if selected_row and task_index != -1:
-                task_view_window = TaskView(parent=self, task_index=task_index)
+                task_view_window = TaskView(parent=self, task_index=task_index, window_title='Edytuj zadanie')
                 task_view_window.show_all()
 
     def delete_task(self, widget):

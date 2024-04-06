@@ -5,13 +5,14 @@ from gi.repository import Gtk, Gdk
 
 
 class TaskView(Gtk.Window):
-    def __init__(self, parent, task_index=None):
-        super().__init__(title="Lista zadań")
+    def __init__(self, parent, window_title, task_index=None):
+        super().__init__(title=window_title)
         self.set_default_size(600, 800)
 
         # variables
         self.parent = parent
         self.task_index = task_index
+        self.window_title = window_title
 
         # elements
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -21,7 +22,6 @@ class TaskView(Gtk.Window):
         box_date = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
 
-        self.window_label = Gtk.Label(label='Dodaj zadanie')
         self.title_label = Gtk.Label(label='Tytuł')
         self.title_input = Gtk.Entry()
         self.content_label = Gtk.Label(label='Treść')
@@ -33,8 +33,6 @@ class TaskView(Gtk.Window):
         self.cancel_button = Gtk.Button(label='Anuluj')
         self.cancel_button.connect("clicked", self.cancel)
 
-
-        box_window.pack_start(self.window_label, True, True, 0)
         box_title.pack_start(self.title_label, True, True, 0)
         box_title.pack_start(self.title_input, True, True, 0)
         box_content.pack_start(self.content_label, True, True, 0)
