@@ -18,9 +18,10 @@ class TaskView(object):
 
         self.ok_button = QtWidgets.QPushButton(self.add_task)
         self.ok_button.setGeometry(QtCore.QRect(20, 700, 270, 50))
-        self.ok_button.setStyleSheet("background-color: rgb(86, 205, 14);\n"
-                                     "color: rgb(255, 255, 255);\n"
-                                     "border-radius: 10px;")
+        self.ok_button.setStyleSheet('''*{background-color: rgb(86, 205, 14);
+                                        color: rgb(255, 255, 255);
+                                        border-radius: 10px;}
+                                        *:hover{background-color: rgb(66, 185, 0);}''')
         self.ok_button.setObjectName("ok_button")
         self.ok_button.setFont(font)
         self.ok_button.clicked.connect(self.ok)
@@ -43,9 +44,10 @@ class TaskView(object):
 
         self.cancel_button = QtWidgets.QPushButton(self.add_task)
         self.cancel_button.setGeometry(QtCore.QRect(310, 700, 270, 50))
-        self.cancel_button.setStyleSheet("background-color: rgb(192, 28, 40);\n"
-                                         "color: rgb(255, 255, 255);\n"
-                                         "border-radius: 10px;")
+        self.cancel_button.setStyleSheet('''*{background-color: rgb(192, 28, 40);
+                                        color: rgb(255, 255, 255);
+                                        border-radius: 10px;}
+                                        *:hover{background-color: rgb(172, 8, 20);}''')
         self.cancel_button.setObjectName("cancel_button")
         self.cancel_button.setFont(font)
         self.cancel_button.clicked.connect(self.cancel)

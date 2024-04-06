@@ -20,17 +20,26 @@ class CssProvider:
                     border-radius: 10px;
                     font-size: 20px;
                 }
+                #buttons:hover {
+                    background: rgb(72, 85, 197);
+                }
                 #ok_button {
                     background: rgb(86, 205, 14);
                     color: rgb(255, 255, 255);
                     border-radius: 10px;
                     font-size: 20px;
                 }
+                #ok_button:hover {
+                    background: rgb(66, 185, 0);
+                }
                 #cancel_button {
                     background: rgb(192, 28, 40);
                     color: rgb(255, 255, 255);
                     border-radius: 10px;
                     font-size: 20px;
+                }
+                #cancel_button:hover {
+                    background: rgb(172, 8, 20);
                 }
                 #task_field_label {
                     background: rgb(82, 95, 207);
