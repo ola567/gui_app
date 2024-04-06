@@ -18,17 +18,6 @@ class MainView(Gtk.Window):
 
         # variables
         self.task_list = ToDoList()
-        # for styling
-        css_provider = CssProvider()
-        css_provider = css_provider.provider
-        css = b"""
-                #buttons {
-                    background: rgb(82, 95, 207);
-                    color: rgb(255, 255, 255);
-                    border-radius: 10px;
-                }
-                """
-        css_provider.load_from_data(css)
 
         # elements
         self.grid = Gtk.Grid()

@@ -15,7 +15,7 @@ class ToDoListAppView(object):
         self.app_name = QtWidgets.QLabel(self.centralwidget)
         self.app_name.setGeometry(QtCore.QRect(260, 320, 261, 51))
         font = QtGui.QFont()
-        font.setPointSize(36)
+        font.setPointSize(40)
         self.app_name.setFont(font)
         self.app_name.setStyleSheet("color: rgb(255, 255, 255)")
         self.app_name.setObjectName("app_name")

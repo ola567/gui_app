@@ -1,5 +1,6 @@
 import gi
 
+from pygtk.CssProvider import CssProvider
 from pygtk.MainView import MainView
 
 gi.require_version("Gtk", "3.0")
@@ -10,11 +11,18 @@ class ToDoListAppView(Gtk.Window):
     def __init__(self):
         super().__init__(title="Lista zadań")
         self.set_default_size(600, 800)
+        self.set_name('start_view')
+
+        # load styles
+        css_provider = CssProvider()
+        css_provider.load_styles()
 
         # elements
         self.app_name_label = Gtk.Label(label='Lista zadań')
+        self.app_name_label.set_name('app_name_label')
         self.app_icon = Gtk.Image.new_from_file("img/app_icon.png")
         self.start_app_button = Gtk.Button(label='Start')
+        self.start_app_button.set_name('start_app_button')
         self.start_app_button.connect("clicked", self.on_button_clicked)
 
         self.grid = Gtk.Grid(row_spacing=30)
