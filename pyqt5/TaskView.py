@@ -117,11 +117,11 @@ class TaskView(object):
         task_description = self.content_input.toPlainText()
         task_finish_date = self.finish_date_input.toPlainText()
         if self.task_index is not None:
-            self.parent.to_do_list.item(self.task_index).setText(f'{task_title} {task_finish_date}: \n    {task_description}')
+            self.parent.to_do_list.item(self.task_index).setText(f'Tytuł: {task_title}\nData ukończenia: {task_finish_date}\nOpis: {task_description}\n')
             self.parent.task_list.edit(task_index=self.task_index, new_task=(task_title, task_description, task_finish_date))
         else:
             self.parent.task_list.add((task_title, task_description, task_finish_date, 0))
-            self.parent.to_do_list.addItem(f'{task_title} {task_finish_date}: \n    {task_description}')
+            self.parent.to_do_list.addItem(f'Tytuł: {task_title}\nData ukończenia: {task_finish_date}\nOpis: {task_description}\n')
         self.add_task.close()
 
     def cancel(self):

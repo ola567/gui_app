@@ -68,12 +68,12 @@ class TaskView(Gtk.Window):
                 row = self.parent.to_do_list.get_children()[self.task_index]
                 label = row.get_child()
                 if isinstance(label, Gtk.Label):
-                    label.set_text(f'{task_title} {task_finish_date}: \n    {task_description}')
+                    label.set_text(f'Tytuł: {task_title}\nData ukończenia: {task_finish_date}\nOpis: {task_description}\n')
         else:
             self.parent.task_list.add((task_title, task_description, task_finish_date, 0))
             # add to ListBox
             new_task = Gtk.ListBoxRow()
-            label = Gtk.Label(label=f'{task_title} {task_finish_date}: \n    {task_description}')
+            label = Gtk.Label(label=f'Tytuł: {task_title}\nData ukończenia: {task_finish_date}\nOpis: {task_description}\n')
             new_task.add(label)
             self.parent.to_do_list.add(new_task)
             new_task.show_all()

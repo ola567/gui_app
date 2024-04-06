@@ -168,7 +168,7 @@ class MainView(object):
                     self.to_do_list.clear()
                     for task in self.task_list.list:
                         self.to_do_list.addItem(
-                            f'{task["task_title"]} {task["task_finish_date"]}: \n    {task["task_description"]}')
+                            f'Tytuł: {task["task_title"]}\nData ukończenia: {task["task_finish_date"]}:\nOpis: {task["task_description"]}\n')
                         if task["task_done"] == 1:
                             last_task = self.to_do_list.item(self.to_do_list.count() - 1)
                             last_task.setForeground(QColor("green"))

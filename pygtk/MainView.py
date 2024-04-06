@@ -136,7 +136,7 @@ class MainView(Gtk.Window):
                             self.to_do_list.remove(row)
                         for task in self.task_list.list:
                             new_task = Gtk.ListBoxRow()
-                            label = Gtk.Label(label=f'{task["task_title"]} {task["task_finish_date"]}: \n    {task["task_description"]}')
+                            label = Gtk.Label(label=f'Tytuł: {task["task_title"]}\nData ukończenia: {task["task_finish_date"]}\nOpis:{task["task_description"]}\n')
                             new_task.add(label)
                             self.to_do_list.add(new_task)
                             if task["task_done"] == 1:
