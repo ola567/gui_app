@@ -17,6 +17,21 @@ class MainView(Gtk.Window):
 
         # variables
         self.task_list = ToDoList()
+        # for styling
+        screen = Gdk.Screen.get_default()
+        provider = Gtk.CssProvider()
+        style_context = Gtk.StyleContext()
+        style_context.add_provider_for_screen(
+            screen, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+        css = b"""
+                #buttons {
+                    background: rgb(82, 95, 207);
+                    color: rgb(255, 255, 255);
+                    border-radius: 10px;
+                }
+                """
+        provider.load_from_data(css)
 
         # elements
         self.grid = Gtk.Grid()
@@ -43,14 +58,19 @@ class MainView(Gtk.Window):
 
         self.to_do_list = Gtk.ListBox()
         self.add_task_button = Gtk.Button(label="Dodaj")
+        self.add_task_button.set_name('buttons')
         self.add_task_button.connect("clicked", self.add_task)
         self.edit_task_button = Gtk.Button(label="Edytuj")
+        self.edit_task_button.set_name('buttons')
         self.edit_task_button.connect("clicked", self.edit_task)
         self.delete_task_button = Gtk.Button(label="Usuń")
+        self.delete_task_button.set_name('buttons')
         self.delete_task_button.connect("clicked", self.delete_task)
         self.done_task_button = Gtk.Button(label="Zrobione")
+        self.done_task_button.set_name('buttons')
         self.done_task_button.connect("clicked", self.done)
         self.not_done_task_button = Gtk.Button(label="Nie zrobione")
+        self.not_done_task_button.set_name('buttons')
         self.not_done_task_button.connect("clicked", self.not_done)
 
         self.grid.attach(self.to_do_list, 0, 0, 2, 1)

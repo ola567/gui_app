@@ -16,8 +16,6 @@ class ToDoListAppView(object):
         self.app_name.setGeometry(QtCore.QRect(260, 320, 261, 51))
         font = QtGui.QFont()
         font.setPointSize(36)
-        font.setBold(True)
-        font.setWeight(75)
         self.app_name.setFont(font)
         self.app_name.setStyleSheet("color: rgb(255, 255, 255)")
         self.app_name.setObjectName("app_name")
@@ -26,8 +24,6 @@ class ToDoListAppView(object):
         self.start_button.setGeometry(QtCore.QRect(150, 510, 301, 61))
         font = QtGui.QFont()
         font.setPointSize(20)
-        font.setBold(True)
-        font.setWeight(75)
         self.start_button.setFont(font)
         self.start_button.setStyleSheet(
             '''
