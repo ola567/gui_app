@@ -46,8 +46,16 @@ class CssProvider:
                     color: rgb(255, 255, 255);
                     border-radius: 10px;
                     font-size: 20px;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    margin-top: 20px;
                 }
                 #task_field_input{
+                    border-radius: 10px;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    margin-top: 10px;
+
                 }
                 #app_name_label {
                     font-size: 40px;

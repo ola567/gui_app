@@ -16,22 +16,26 @@ class TaskView(Gtk.Window):
         self.window_title = window_title
 
         # elements
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        box_window = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
         box_title = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box_content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box_date = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        box_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        box_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
 
         self.title_label = Gtk.Label(label='Tytuł')
         self.title_label.set_name('task_field_label')
         self.title_input = Gtk.Entry()
+        self.title_input.set_name('task_field_input')
         self.content_label = Gtk.Label(label='Treść')
         self.content_label.set_name('task_field_label')
         self.content_input = Gtk.Entry()
+        self.content_input.set_name('task_field_input')
+
         self.date_label = Gtk.Label(label='Data ukończenia')
         self.date_label.set_name('task_field_label')
         self.date_input = Gtk.Entry()
+        self.date_input.set_name('task_field_input')
+
         self.ok_button = Gtk.Button(label='Akceptuj')
         self.ok_button.set_name('ok_button')
         self.ok_button.connect("clicked", self.ok)
@@ -48,7 +52,6 @@ class TaskView(Gtk.Window):
         box_buttons.pack_start(self.ok_button, True, True, 0)
         box_buttons.pack_start(self.cancel_button, True, True, 0)
 
-        box.pack_start(box_window, False, False, 0)
         box.pack_start(box_title, True, True, 0)
         box.pack_start(box_content, True, True, 0)
         box.pack_start(box_date, True, True, 0)
