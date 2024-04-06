@@ -3,6 +3,7 @@ import ast
 import gi
 
 from pygtk.AboutAppView import AboutAppView
+from pygtk.CssProvider import CssProvider
 from pygtk.TaskView import TaskView
 from pygtk.ToDoList import ToDoList
 
@@ -18,12 +19,8 @@ class MainView(Gtk.Window):
         # variables
         self.task_list = ToDoList()
         # for styling
-        screen = Gdk.Screen.get_default()
-        provider = Gtk.CssProvider()
-        style_context = Gtk.StyleContext()
-        style_context.add_provider_for_screen(
-            screen, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
+        css_provider = CssProvider()
+        css_provider = css_provider.provider
         css = b"""
                 #buttons {
                     background: rgb(82, 95, 207);
@@ -31,7 +28,7 @@ class MainView(Gtk.Window):
                     border-radius: 10px;
                 }
                 """
-        provider.load_from_data(css)
+        css_provider.load_from_data(css)
 
         # elements
         self.grid = Gtk.Grid()
