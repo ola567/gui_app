@@ -15,6 +15,7 @@ class MainView(Gtk.Window):
     def __init__(self):
         super().__init__(title="Lista zadań")
         self.set_default_size(600, 800)
+        self.set_name('background')
 
         # variables
         self.task_list = ToDoList()

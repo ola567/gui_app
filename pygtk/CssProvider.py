@@ -20,15 +20,25 @@ class CssProvider:
                     border-radius: 10px;
                     font-size: 20px;
                 }
+                #ok_button {
+                    background: rgb(86, 205, 14);
+                    color: rgb(255, 255, 255);
+                    border-radius: 10px;
+                    font-size: 20px;
+                }
+                #cancel_button {
+                    background: rgb(192, 28, 40);
+                    color: rgb(255, 255, 255);
+                    border-radius: 10px;
+                    font-size: 20px;
+                }
                 #task_field_label {
                     background: rgb(82, 95, 207);
                     color: rgb(255, 255, 255);
                     border-radius: 10px;
                     font-size: 20px;
                 }
-                #task_field_input_short {
-                }
-                #task_field_input_long {
+                #task_field_input{
                 }
                 #app_name_label {
                     font-size: 40px;
@@ -45,6 +55,9 @@ class CssProvider:
                 }
                 #start_view {
                     background: rgb(82, 95, 207);
+                }
+                #background {
+                    background-color: rgb(217, 217, 217);
                 }
                 """
 

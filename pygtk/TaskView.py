@@ -8,6 +8,7 @@ class TaskView(Gtk.Window):
     def __init__(self, parent, window_title, task_index=None):
         super().__init__(title=window_title)
         self.set_default_size(600, 800)
+        self.set_name('background')
 
         # variables
         self.parent = parent
@@ -23,14 +24,19 @@ class TaskView(Gtk.Window):
         box_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
 
         self.title_label = Gtk.Label(label='Tytuł')
+        self.title_label.set_name('task_field_label')
         self.title_input = Gtk.Entry()
         self.content_label = Gtk.Label(label='Treść')
+        self.content_label.set_name('task_field_label')
         self.content_input = Gtk.Entry()
         self.date_label = Gtk.Label(label='Data ukończenia')
+        self.date_label.set_name('task_field_label')
         self.date_input = Gtk.Entry()
         self.ok_button = Gtk.Button(label='Akceptuj')
+        self.ok_button.set_name('ok_button')
         self.ok_button.connect("clicked", self.ok)
         self.cancel_button = Gtk.Button(label='Anuluj')
+        self.cancel_button.set_name('cancel_button')
         self.cancel_button.connect("clicked", self.cancel)
 
         box_title.pack_start(self.title_label, True, True, 0)

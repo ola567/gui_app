@@ -8,6 +8,7 @@ class AboutAppView(Gtk.Window):
     def __init__(self):
         super().__init__(title="O aplikacji")
         self.set_default_size(600, 180)
+        self.set_name('background')
 
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         about_app_content = Gtk.Label(label="Aplikacja umożliwia stworzenie listy zadań do zrobienia. Zadania można \n"
