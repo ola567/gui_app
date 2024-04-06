@@ -19,8 +19,6 @@ class MainView(object):
 
         font = QtGui.QFont()
         font.setPointSize(20)
-        font.setBold(True)
-        font.setWeight(75)
 
         button_style_sheet = '''*{background-color: rgb(82, 95, 207);
                                 color: rgb(255, 255, 255);
@@ -69,11 +67,6 @@ class MainView(object):
         self.not_done_button.setStyleSheet(button_style_sheet)
         self.not_done_button.setObjectName("not_done")
         self.not_done_button.clicked.connect(self.not_done)
-
-        font = QtGui.QFont()
-        font.setPointSize(20)
-        font.setBold(True)
-        font.setWeight(75)
 
         self.to_do_list = QtWidgets.QListWidget(self.centralwidget)
         self.to_do_list.setGeometry(QtCore.QRect(20, 20, 560, 530))
@@ -154,7 +147,7 @@ class MainView(object):
             self.task_list.delete(task_number=task_number)
 
     def save_to_file(self):
-        file_path, _ = QFileDialog.getSaveFileName(None, "Save File", "", "Text Files")
+        file_path, _ = QFileDialog.getSaveFileName(None, "Zapisz plik", "", "Pliki tekstowe")
         if file_path:
             with open(file_path, "w") as file:
                 file.write(str(self.task_list.list))

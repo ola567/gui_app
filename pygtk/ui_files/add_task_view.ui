@@ -61,7 +61,7 @@ color: rgb(255, 255, 255);
 border-radius: 10px;</string>
    </property>
    <property name="text">
-    <string>Ok</string>
+    <string>Akceptuj</string>
    </property>
   </widget>
   <widget class="QLabel" name="finish_date_label">

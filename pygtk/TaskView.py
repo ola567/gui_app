@@ -28,7 +28,7 @@ class TaskView(Gtk.Window):
         self.content_input = Gtk.Entry()
         self.date_label = Gtk.Label(label='Data ukończenia')
         self.date_input = Gtk.Entry()
-        self.ok_button = Gtk.Button(label='Ok')
+        self.ok_button = Gtk.Button(label='Akceptuj')
         self.ok_button.connect("clicked", self.ok)
         self.cancel_button = Gtk.Button(label='Anuluj')
         self.cancel_button.connect("clicked", self.cancel)

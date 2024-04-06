@@ -17,35 +17,6 @@
    <string notr="true">background-color: rgb(217, 217, 217);
 </string>
   </property>
-  <widget class="QLabel" name="add_task_label">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>600</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(82, 95, 207);
-color: rgb(255, 255, 255);
-text-align: center;
-border-radius: 10px;</string>
-   </property>
-   <property name="text">
-    <string>Dodaj zadanie</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QPushButton" name="ok_button">
    <property name="geometry">
     <rect>
@@ -55,20 +26,25 @@ border-radius: 10px;</string>
      <height>50</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(86, 205, 14);
 color: rgb(255, 255, 255);
 border-radius: 10px;</string>
    </property>
    <property name="text">
-    <string>Ok</string>
+    <string>Akceptuj</string>
    </property>
   </widget>
   <widget class="QLabel" name="finish_date_label">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>450</y>
+     <y>350</y>
      <width>240</width>
      <height>50</height>
     </rect>
@@ -76,8 +52,8 @@ border-radius: 10px;</string>
    <property name="font">
     <font>
      <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -97,9 +73,9 @@ border-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>290</y>
+     <y>210</y>
      <width>560</width>
-     <height>121</height>
+     <height>120</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -116,6 +92,11 @@ border-radius: 10px;</string>
      <height>50</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(192, 28, 40);
 color: rgb(255, 255, 255);
@@ -129,7 +110,7 @@ border-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>70</y>
+     <y>20</y>
      <width>240</width>
      <height>50</height>
     </rect>
@@ -137,8 +118,8 @@ border-radius: 10px;</string>
    <property name="font">
     <font>
      <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -158,7 +139,7 @@ border-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>230</y>
+     <y>150</y>
      <width>240</width>
      <height>50</height>
     </rect>
@@ -166,8 +147,8 @@ border-radius: 10px;</string>
    <property name="font">
     <font>
      <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -187,7 +168,7 @@ border-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>130</y>
+     <y>80</y>
      <width>560</width>
      <height>50</height>
     </rect>
@@ -201,7 +182,7 @@ border-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>510</y>
+     <y>410</y>
      <width>560</width>
      <height>50</height>
     </rect>

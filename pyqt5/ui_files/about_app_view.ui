@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>230</height>
+    <height>180</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,40 +17,11 @@
    <string notr="true">background-color: rgb(217, 217, 217)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="add_task_label">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>600</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(82, 95, 207);
-color: rgb(255, 255, 255);
-text-align: center;
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string>O aplikacji</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="title_label">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>70</y>
+      <y>20</y>
       <width>560</width>
       <height>140</height>
      </rect>
