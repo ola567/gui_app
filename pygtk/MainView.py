@@ -25,7 +25,9 @@ class MainView(Gtk.Window):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         self.menu_bar = Gtk.MenuBar()
+        self.menu_bar.set_name('menu')
         menu = Gtk.Menu()
+        menu.set_name('menu')
         menu_item = Gtk.MenuItem(label="Menu")
         menu_item.set_submenu(menu)
 

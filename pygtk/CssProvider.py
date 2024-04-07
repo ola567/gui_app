@@ -28,6 +28,10 @@ class CssProvider:
                     color: rgb(255, 255, 255);
                     border-radius: 10px;
                     font-size: 20px;
+                    margin-left: 20px;
+                    margin-right: 10px;
+                    margin-bottom: 20px;
+                    margin-top: 50px;
                 }
                 #ok_button:hover {
                     background: rgb(66, 185, 0);
@@ -37,6 +41,10 @@ class CssProvider:
                     color: rgb(255, 255, 255);
                     border-radius: 10px;
                     font-size: 20px;
+                    margin-left: 10px;
+                    margin-right: 20px;
+                    margin-bottom: 20px;
+                    margin-top: 50px;
                 }
                 #cancel_button:hover {
                     background: rgb(172, 8, 20);
@@ -75,6 +83,16 @@ class CssProvider:
                 }
                 #background {
                     background-color: rgb(217, 217, 217);
+                }
+                #about_app {
+                    background: rgb(255, 255, 255);
+                    margin: 20px;
+                    border-radius: 20px;
+                }
+                #menu {
+                    background: rgb(82, 95, 207);
+                    color: rgb(255, 255, 255);
+                    font-size: 20px;
                 }
                 """
 
