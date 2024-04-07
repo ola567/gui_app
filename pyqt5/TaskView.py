@@ -17,7 +17,7 @@ class TaskView(object):
         font.setPointSize(20)
 
         self.ok_button = QtWidgets.QPushButton(self.add_task)
-        self.ok_button.setGeometry(QtCore.QRect(20, 629, 270, 151))
+        self.ok_button.setGeometry(QtCore.QRect(20, 730, 270, 50))
         self.ok_button.setStyleSheet('''*{background-color: rgb(86, 205, 14);
                                         color: rgb(255, 255, 255);
                                         border-radius: 10px;}
@@ -43,7 +43,7 @@ class TaskView(object):
         self.content_input.setObjectName("content_input")
 
         self.cancel_button = QtWidgets.QPushButton(self.add_task)
-        self.cancel_button.setGeometry(QtCore.QRect(310, 629, 270, 151))
+        self.cancel_button.setGeometry(QtCore.QRect(310, 730, 270, 50))
         self.cancel_button.setStyleSheet('''*{background-color: rgb(192, 28, 40);
                                         color: rgb(255, 255, 255);
                                         border-radius: 10px;}
