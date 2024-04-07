@@ -3,7 +3,6 @@ import ast
 import gi
 
 from pygtk.AboutAppView import AboutAppView
-from pygtk.CssProvider import CssProvider
 from pygtk.TaskView import TaskView
 from pygtk.ToDoList import ToDoList
 
@@ -158,8 +157,10 @@ class MainView(Gtk.Window):
                             self.to_do_list.remove(row)
                         for task in self.task_list.list:
                             new_task = Gtk.ListBoxRow()
+                            grid = Gtk.Grid()
+                            new_task.add(grid)
                             label = Gtk.Label(label=f'Tytuł: {task["task_title"]}\nData ukończenia: {task["task_finish_date"]}\nOpis:{task["task_description"]}\n')
-                            new_task.add(label)
+                            grid.attach(label, 0, 0, 1, 1)
                             self.to_do_list.add(new_task)
                             if task["task_done"] == 1:
                                 # get last element

@@ -80,8 +80,10 @@ class TaskView(Gtk.Window):
             self.parent.task_list.add((task_title, task_description, task_finish_date, 0))
             # add to ListBox
             new_task = Gtk.ListBoxRow()
+            grid = Gtk.Grid()
+            new_task.add(grid)
             label = Gtk.Label(label=f'Tytuł: {task_title}\nData ukończenia: {task_finish_date}\nOpis: {task_description}\n')
-            new_task.add(label)
+            grid.attach(label, 0, 0, 1, 1)
             self.parent.to_do_list.add(new_task)
             new_task.show_all()
         self.destroy()
