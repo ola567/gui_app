@@ -21,7 +21,7 @@ class ToDoListAppView(object):
         self.app_name.setObjectName("app_name")
 
         self.start_button = QtWidgets.QPushButton(self.centralwidget)
-        self.start_button.setGeometry(QtCore.QRect(150, 510, 301, 61))
+        self.start_button.setGeometry(QtCore.QRect(70, 510, 460, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.start_button.setFont(font)
