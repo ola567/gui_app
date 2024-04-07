@@ -28,8 +28,6 @@ class MainView(object):
         self.add_task_button = QtWidgets.QPushButton(self.centralwidget)
         self.add_task_button.setGeometry(QtCore.QRect(20, 570, 270, 50))
         self.add_task_button.setFont(font)
-        self.add_task_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.add_task_button.setMouseTracking(True)
         self.add_task_button.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.add_task_button.setStyleSheet(button_style_sheet)
         self.add_task_button.setObjectName("add_task")
@@ -38,8 +36,6 @@ class MainView(object):
         self.edit_task_button = QtWidgets.QPushButton(self.centralwidget)
         self.edit_task_button.setGeometry(QtCore.QRect(310, 570, 270, 50))
         self.edit_task_button.setFont(font)
-        self.edit_task_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.edit_task_button.setMouseTracking(True)
         self.edit_task_button.setStyleSheet(button_style_sheet)
         self.edit_task_button.setObjectName("edit_task")
         self.edit_task_button.clicked.connect(self.edit_task)
@@ -47,7 +43,6 @@ class MainView(object):
         self.delete_task_button = QtWidgets.QPushButton(self.centralwidget)
         self.delete_task_button.setGeometry(QtCore.QRect(20, 630, 560, 50))
         self.delete_task_button.setFont(font)
-        self.delete_task_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.delete_task_button.setStyleSheet(button_style_sheet)
         self.delete_task_button.setObjectName("delete_task")
         self.delete_task_button.clicked.connect(self.delete_task)
@@ -55,7 +50,6 @@ class MainView(object):
         self.done_button = QtWidgets.QPushButton(self.centralwidget)
         self.done_button.setGeometry(QtCore.QRect(20, 690, 270, 50))
         self.done_button.setFont(font)
-        self.done_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.done_button.setStyleSheet(button_style_sheet)
         self.done_button.setObjectName("done")
         self.done_button.clicked.connect(self.done)
@@ -63,7 +57,6 @@ class MainView(object):
         self.not_done_button = QtWidgets.QPushButton(self.centralwidget)
         self.not_done_button.setGeometry(QtCore.QRect(310, 690, 270, 50))
         self.not_done_button.setFont(font)
-        self.not_done_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.not_done_button.setStyleSheet(button_style_sheet)
         self.not_done_button.setObjectName("not_done")
         self.not_done_button.clicked.connect(self.not_done)
@@ -80,7 +73,6 @@ class MainView(object):
         self.menu = QtWidgets.QMenuBar(main_view)
         self.menu.setGeometry(QtCore.QRect(0, 0, 600, 40))
         self.menu.setFont(font)
-        self.menu.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.menu.setStyleSheet('''*{background-color: rgb(82, 95, 207);
                                      color: rgb(255, 255, 255);
                                      border-radius: 10px;}''')
@@ -89,7 +81,6 @@ class MainView(object):
         self.menu_elements = QtWidgets.QMenu(self.menu)
         self.menu_elements.setGeometry(QtCore.QRect(0, 0, 600, 200))
         self.menu_elements.setFont(font)
-        self.menu_elements.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.menu_elements.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.menu_elements.setStyleSheet('''*{background-color: rgb(82, 95, 207);;
                                              color: rgb(255, 255, 255);

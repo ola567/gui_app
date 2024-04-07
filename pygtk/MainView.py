@@ -88,7 +88,6 @@ class MainView(Gtk.Window):
         self.not_done_task_button.connect("clicked", self.not_done)
         box_three.pack_start(self.not_done_task_button, True, True, 0)
 
-
     def add_task(self, widget):
         task_window = TaskView(parent=self, window_title='Dodaj zadanie')
         task_window.show_all()
