@@ -19,8 +19,31 @@ class CssProvider:
                     color: rgb(255, 255, 255);
                     border-radius: 10px;
                     font-size: 20px;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    margin-bottom: 10px;
                 }
                 #buttons:hover {
+                    background: rgb(72, 85, 197);
+                }
+                #left_buttons {
+                    background: rgb(82, 95, 207);
+                    color: rgb(255, 255, 255);
+                    border-radius: 10px;
+                    font-size: 20px;
+                    margin-left: 20px;
+                }
+                #left_buttons:hover {
+                    background: rgb(72, 85, 197);
+                }
+                #right_buttons {
+                    background: rgb(82, 95, 207);
+                    color: rgb(255, 255, 255);
+                    border-radius: 10px;
+                    font-size: 20px;
+                    margin-right: 20px;
+                }
+                #right_buttons:hover {
                     background: rgb(72, 85, 197);
                 }
                 #ok_button {
@@ -94,6 +117,11 @@ class CssProvider:
                     background: rgb(82, 95, 207);
                     color: rgb(255, 255, 255);
                     font-size: 20px;
+                }
+                #to_do_list {
+                    margin: 20px;
+                    border-radius: 20px;
+                    padding: 0;
                 }
                 """
 

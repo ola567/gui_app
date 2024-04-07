@@ -21,11 +21,14 @@ class MainView(Gtk.Window):
         self.task_list = ToDoList()
 
         # elements
-        self.grid = Gtk.Grid()
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        window_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.add(window_box)
 
+        # create menu
         self.menu_bar = Gtk.MenuBar()
         self.menu_bar.set_name('menu')
+        window_box.pack_start(self.menu_bar, False, False, 0)
+
         menu = Gtk.Menu()
         menu.set_name('menu')
         menu_item = Gtk.MenuItem(label="Menu")
@@ -42,40 +45,50 @@ class MainView(Gtk.Window):
         about_app_item = Gtk.MenuItem(label="O aplikacji")
         about_app_item.connect("activate", self.about_app)
         menu.append(about_app_item)
-
         self.menu_bar.append(menu_item)
 
+        # create scrolled listbox
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_hexpand(True)
+        scrolled_window.set_vexpand(True)
+        window_box.pack_start(scrolled_window, True, True, 0)
         self.to_do_list = Gtk.ListBox()
+        self.to_do_list.set_name("to_do_list")
+        scrolled_window.add(self.to_do_list)
+
+        # buttons
+        button_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        window_box.pack_start(button_box, False, False, 0)
+
+        box_one = Gtk.Box()
+        button_box.pack_start(box_one, True, True, 0)
         self.add_task_button = Gtk.Button(label="Dodaj")
         self.add_task_button.set_name('buttons')
         self.add_task_button.connect("clicked", self.add_task)
+        box_one.pack_start(self.add_task_button, True, True, 0)
         self.edit_task_button = Gtk.Button(label="Edytuj")
         self.edit_task_button.set_name('buttons')
         self.edit_task_button.connect("clicked", self.edit_task)
+        box_one.pack_start(self.edit_task_button, True, True, 0)
+
+        box_two = Gtk.Box()
+        button_box.pack_start(box_two, True, True, 0)
         self.delete_task_button = Gtk.Button(label="Usuń")
         self.delete_task_button.set_name('buttons')
         self.delete_task_button.connect("clicked", self.delete_task)
+        box_two.pack_start(self.delete_task_button, True, True, 0)
+
+        box_three = Gtk.Box()
+        button_box.pack_start(box_three, True, True, 0)
         self.done_task_button = Gtk.Button(label="Zrobione")
         self.done_task_button.set_name('buttons')
         self.done_task_button.connect("clicked", self.done)
+        box_three.pack_start(self.done_task_button, True, True, 0)
         self.not_done_task_button = Gtk.Button(label="Nie zrobione")
         self.not_done_task_button.set_name('buttons')
         self.not_done_task_button.connect("clicked", self.not_done)
+        box_three.pack_start(self.not_done_task_button, True, True, 0)
 
-        self.grid.attach(self.to_do_list, 0, 0, 2, 1)
-        self.grid.attach(self.add_task_button, 0, 1, 1, 1)
-        self.grid.attach(self.edit_task_button, 1, 1, 1, 1)
-        self.grid.attach(self.delete_task_button, 0, 2, 2, 1)
-        self.grid.attach(self.done_task_button, 0, 3, 1, 1)
-        self.grid.attach(self.not_done_task_button, 1, 3, 1, 1)
-
-        self.grid.set_halign(Gtk.Align.CENTER)
-        self.grid.set_valign(Gtk.Align.CENTER)
-
-        box.pack_start(self.menu_bar, False, False, 0)
-        box.pack_start(self.grid, True, True, 0)
-
-        self.add(box)
 
     def add_task(self, widget):
         task_window = TaskView(parent=self, window_title='Dodaj zadanie')

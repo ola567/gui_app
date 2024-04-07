@@ -55,7 +55,7 @@ class TaskView(Gtk.Window):
         box.pack_start(box_title, True, True, 0)
         box.pack_start(box_content, True, True, 0)
         box.pack_start(box_date, True, True, 0)
-        box.pack_start(box_buttons, True, True, 0)
+        box.pack_start(box_buttons, False, False, 0)
 
         if self.task_index is not None:
             self.title_input.set_text(self.parent.task_list.list[self.task_index]['task_title'])
