@@ -74,6 +74,7 @@ class CssProvider:
                     color: rgb(255, 255, 255);
                     border-radius: 10px;
                     font-size: 20px;
+                    border-color: rgb(239, 139, 235);
                 }
                 #start_app_button:hover {
                     background: rgb(229, 129, 225);
