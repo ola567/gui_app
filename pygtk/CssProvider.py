@@ -120,7 +120,7 @@ class CssProvider:
                 }
                 #to_do_list {
                     margin: 20px;
-                    border-radius: 20px;
+                    border-radius: 10px;
                     padding: 0;
                 }
                 """

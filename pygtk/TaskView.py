@@ -73,7 +73,7 @@ class TaskView(Gtk.Window):
             # edit in ListBox
             if 0 <= self.task_index < len(self.parent.to_do_list.get_children()):
                 row = self.parent.to_do_list.get_children()[self.task_index]
-                label = row.get_child()
+                label = row.get_child().get_children()[0]
                 if isinstance(label, Gtk.Label):
                     label.set_text(f'Tytuł: {task_title}\nData ukończenia: {task_finish_date}\nOpis: {task_description}\n')
         else:

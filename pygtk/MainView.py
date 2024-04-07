@@ -112,7 +112,7 @@ class MainView(Gtk.Window):
         selected_item = self.to_do_list.get_selected_row()
         if selected_item:
             selected_item_index = selected_item.get_index()
-            selected_item_label = selected_item.get_child()
+            selected_item_label = selected_item.get_child().get_children()[0]
             selected_item_label.set_property("use_markup", True)
             selected_item_label.set_markup('<span strikethrough="true" foreground="green">{}</span>'.format(selected_item_label.get_text()))
             self.task_list.list[selected_item_index]['task_done'] = 1
@@ -121,7 +121,7 @@ class MainView(Gtk.Window):
         selected_item = self.to_do_list.get_selected_row()
         if selected_item:
             selected_item_index = selected_item.get_index()
-            selected_item_label = selected_item.get_child()
+            selected_item_label = selected_item.get_child().get_children()[0]
             selected_item_label.set_property("use_markup", True)
             selected_item_label.set_markup('<span strikethrough="false" foreground="black">{}</span>'.format(selected_item_label.get_text()))
             self.task_list.list[selected_item_index]['task_done'] = 0
@@ -166,7 +166,7 @@ class MainView(Gtk.Window):
                                 # get last element
                                 children = self.to_do_list.get_children()
                                 last_item = children[-1]
-                                last_item_label = last_item.get_children()[0]
+                                last_item_label = last_item.get_children()[0].get_children()[0]
                                 last_item_label.set_property("use_markup", True)
                                 last_item_label.set_markup('<span strikethrough="true" foreground="green">{}</span>'.format(last_item_label.get_text()))
                             new_task.show_all()
